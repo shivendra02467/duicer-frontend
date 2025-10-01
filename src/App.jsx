@@ -52,7 +52,7 @@ function Videos() {
     <div className="flex justify-center items-center h-screen p-6 max-w-3xl mx-auto text-center">
       <div>
       <h2 className="text-2xl font-bold mb-4">Latest YouTube Videos</h2>
-      <div className="grid md:grid-cols-2 gap-4">
+      <div className="grid md:grid-cols-1 gap-4">
         {videos.map((video) => (
           <div key={video.id.videoId} className="aspect-video">
             <iframe
