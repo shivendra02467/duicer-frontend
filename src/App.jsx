@@ -17,14 +17,16 @@ function Navbar() {
 
 function Home() {
   return (
-    <motion.div className="p-6 max-w-3xl mx-auto text-center"
-      initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-      <h2 className="text-3xl font-bold mb-4">Welcome to Kush's Infotainment</h2>
-      <p className="text-600">Exploring Pure Math, Programming, and Fun Ideas through Videos & Projects.</p>
+    <motion.div className="bg-banner" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+    <div className="flex justify-center items-center min-h-screen p-6 max-w-3xl mx-auto text-center">
+      <div>
+      <h2 className="text-4xl font-bold mb-120">Exploring Math, Physics, Programming and Fun Ideas</h2>
       <h2 className="text-2xl font-bold mb-4">GitHub</h2>
       <p className="mb-4">Check out my code and contributions on GitHub.</p>
       <a href="https://github.com/shivendra02467" target="_blank" rel="noopener noreferrer"
         className="px-4 py-2 bg-white text-black rounded-xl shadow hover:bg-gray-800">Visit GitHub</a>
+      </div>
+    </div>
     </motion.div>
   );
 }
@@ -46,7 +48,9 @@ function Videos() {
   }, []);
 
   return (
-    <div className="p-6 max-w-4xl mx-auto">
+    <div className="bg-banner-1">
+    <div className="flex justify-center items-center h-screen p-6 max-w-3xl mx-auto text-center">
+      <div>
       <h2 className="text-2xl font-bold mb-4">Latest YouTube Videos</h2>
       <div className="grid md:grid-cols-2 gap-4">
         {videos.map((video) => (
@@ -60,18 +64,24 @@ function Videos() {
           </div>
         ))}
       </div>
+      </div>
+    </div>
     </div>
   );
 }
 
 function Projects() {
   return (
-    <div className="p-6 max-w-4xl mx-auto">
+    <div className="bg-banner-1">
+    <div className="flex justify-center items-center h-screen p-6 max-w-3xl mx-auto text-center">
+    <div>
       <h2 className="text-2xl font-bold mb-4">Projects</h2>
       <ul className="space-y-4">
         <li className="p-4 border rounded-xl shadow hover:shadow-lg transition">C++ Toolchain Manager</li>
         <li className="p-4 border rounded-xl shadow hover:shadow-lg transition">Real-time Chess Game</li>
       </ul>
+    </div>
+    </div>
     </div>
   );
 }
@@ -79,7 +89,7 @@ function Projects() {
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-gray-50 text-white home-bg">
+      <div className="min-h-screen text-white">
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
