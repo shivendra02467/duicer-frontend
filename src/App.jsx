@@ -1,100 +1,75 @@
-import {useState, useEffect} from "react";
+import React, { useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { Canvas, useFrame } from '@react-three/fiber';
 import { motion } from "framer-motion";
 
-function Navbar() {
-  return (
-    <nav className="flex justify-between items-center p-4 shadow-md bg-black sticky top-0 z-50">
-      <h1 className="text-xl font-bold">Duicer</h1>
-      <ul className="flex gap-4 text-700">
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/videos">Videos</Link></li>
-        <li><Link to="/projects">Projects</Link></li>
-      </ul>
-    </nav>
-  );
-}
 
 function Home() {
+  function Icosahedron() {
+    const meshRef = useRef();
+
+    useFrame(() => {
+      if (meshRef.current) {
+        meshRef.current.rotation.x += 0.01;
+        meshRef.current.rotation.y += 0.01;
+      }
+    });
+
+    return (
+      <mesh ref={meshRef}>
+        <icosahedronGeometry args={[1, 0]} />
+        <meshNormalMaterial flatShading transparent opacity={1.0} />
+      </mesh>
+    );
+  }
+
   return (
-    <motion.div className="bg-banner" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-    <div className="flex justify-center items-center min-h-screen p-6 max-w-3xl mx-auto text-center">
-      <div>
-      <h2 className="text-4xl font-bold mb-120">Exploring Math, Physics, Programming and Fun Ideas</h2>
-      <h2 className="text-2xl font-bold mb-4">GitHub</h2>
-      <p className="mb-4">Check out my code and contributions on GitHub.</p>
-      <a href="https://github.com/shivendra02467" target="_blank" rel="noopener noreferrer"
-        className="px-4 py-2 bg-white text-black rounded-xl shadow hover:bg-gray-800">Visit GitHub</a>
+    <motion.div className="flex min-h-screen items-center justify-center text-center relative overflow-hidden" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+      <Canvas
+        style={{ width: '40vw', height: '40vh'}}
+        gl={{ alpha: true, antialias: true }}
+        camera={{ position: [0, 0, 3], fov: 75 }}
+      >
+        <ambientLight intensity={0.6} />
+        <directionalLight position={[5, 5, 5]} />
+        <Icosahedron />
+      </Canvas>
+      <div className="absolute w-[35vh] h-[35vh] top-0 bottom-0 left-0 right-0 m-auto animate-[spin_20s_linear_infinite]">
+        <img src='/dodeca-1.svg' className='absolute bottom-0 right-0 w-[25%] h-[25%] animate-[spin_5000ms_linear_infinite]'/>
+        <img src='/dodeca-2.svg' className='absolute top-0 right-0 w-[25%] h-[25%] animate-[spin_5000ms_linear_infinite]'/>
+        <img src='/icosa-1.svg' className='absolute top-0 left-0 w-[25%] h-[25%] animate-[spin_5000ms_linear_infinite]'/>
+        <img src='/icosa-2.svg' className='absolute bottom-0 left-0 w-[25%] h-[25%] animate-[spin_5000ms_linear_infinite]'/>
       </div>
-    </div>
+      <h2 className="text-4xl font-bold absolute top-[10vh]">Exploring Math, Physics, Programming and Fun Ideas</h2>
+      <img src='/duicer.svg' className='absolute m-auto top-0 right-0 bottom-0 left-0 w-[36vh] h-[20vh] [filter:drop-shadow(0.8vh_0.5vh_0px_rgba(0,0,0,1))]'/>
+      <div className="flex absolute bottom-[10vh] gap-10 justify-center items-center">
+        <a
+          href="https://www.youtube.com/@duicer"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Go to YouTube"
+        >
+          <img src='/youtube.svg' />
+        </a>
+        <a
+          href="https://github.com/shivendra02467"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Go to Github"
+        >
+          <img src='/github.svg' />
+        </a>
+      </div>
     </motion.div>
-  );
-}
-
-function Videos() {
-  const [videos, setVideos] = useState([]);
-
-  useEffect(() => {
-    const API_KEY = import.meta.env.VITE_YT_API_KEY; // put in .env file ideally
-    const CHANNEL_ID = import.meta.env.VITE_YT_CHANNEL_ID;
-    const URL = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&type=video&maxResults=6`;
-
-    fetch(URL)
-      .then((res) => res.json())
-      .then((data) => {
-        setVideos(data.items || []);
-      })
-      .catch((err) => console.error(err));
-  }, []);
-
-  return (
-    <div className="bg-banner-1">
-    <div className="flex justify-center items-center h-screen p-6 max-w-3xl mx-auto text-center">
-      <div>
-      <h2 className="text-2xl font-bold mb-4">Latest YouTube Videos</h2>
-      <div className="grid md:grid-cols-1 gap-4">
-        {videos.map((video) => (
-          <div key={video.id.videoId} className="aspect-video">
-            <iframe
-              className="w-full h-full rounded-xl shadow"
-              src={`https://www.youtube.com/embed/${video.id.videoId}`}
-              title={video.snippet.title}
-              allowFullScreen
-            ></iframe>
-          </div>
-        ))}
-      </div>
-      </div>
-    </div>
-    </div>
-  );
-}
-
-function Projects() {
-  return (
-    <div className="bg-banner-1">
-    <div className="flex justify-center items-center h-screen p-6 max-w-3xl mx-auto text-center">
-    <div>
-      <h2 className="text-2xl font-bold mb-4">Projects</h2>
-      <ul className="space-y-4">
-        <li className="p-4 border rounded-xl shadow hover:shadow-lg transition">C++ Toolchain Manager</li>
-        <li className="p-4 border rounded-xl shadow hover:shadow-lg transition">Real-time Chess Game</li>
-      </ul>
-    </div>
-    </div>
-    </div>
   );
 }
 
 function App() {
   return (
     <Router>
-      <div className="min-h-screen text-white">
-        <Navbar />
+      <div className="min-h-screen text-white bg-black bg-banner">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/videos" element={<Videos />} />
-          <Route path="/projects" element={<Projects />} />
         </Routes>
       </div>
     </Router>
