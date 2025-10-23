@@ -26,7 +26,7 @@ function Home() {
   return (
     <motion.div className="flex min-h-screen items-center justify-center text-center relative overflow-hidden" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       <Canvas
-        style={{ width: "40vw", height: "40vh"}}
+        style={{ width: "40vh", height: "40vh"}}
         gl={{ alpha: true, antialias: true }}
         camera={{ position: [0, 0, 3], fov: 75 }}
       >
@@ -49,7 +49,7 @@ function Home() {
           rel="noopener noreferrer"
           aria-label="Go to YouTube"
         >
-          <img src="/youtube.svg" />
+          <img src="/youtube.svg" className="hover:scale-110 transition-transform" />
         </a>
         <a
           href="https://github.com/shivendra02467"
@@ -57,7 +57,15 @@ function Home() {
           rel="noopener noreferrer"
           aria-label="Go to Github"
         >
-          <img src="/github.svg" />
+          <img src="/github.svg" className="hover:scale-110 transition-transform" />
+        </a>
+        <a
+          href="https://patreon.com/Duicer"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Go to Patreon"
+        >
+          <img src="/patreon.svg" className="hover:scale-110 transition-transform" />
         </a>
       </div>
     </motion.div>
