@@ -4,6 +4,7 @@
 
 @layer utilities {
   .bg-banner {
+    background-attachment: fixed;
     background-image: url("/banner.png");
     background-size: cover;
     background-position: center;
@@ -11,3 +12,25 @@
   }
 }
 
+html {
+  color-scheme: dark;
+  scrollbar-gutter: stable;
+  background-color: #000000;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #000000;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #27272a;
+  border: 2px solid #000000;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #ffde59;
+}
