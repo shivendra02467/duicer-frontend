@@ -83,7 +83,16 @@ function Projects() {
                                     <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-zinc-500">
                                         Source // {repo.id.toString().substring(0, 5)}
                                     </span>
-                                    <span className="text-[#ffde59] text-xl font-bold">→</span>
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        strokeWidth={3}
+                                        stroke="currentColor"
+                                        className="w-5 h-5 text-[#ffde59]"
+                                    >
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                                    </svg>
                                 </div>
                             </div>
                         </a>
@@ -96,9 +105,21 @@ function Projects() {
                     </p>
                     <a
                         href="https://github.com/shivendra02467"
-                        className="text-sm font-bold uppercase tracking-widest hover:text-[#ffde59] transition-colors flex items-center gap-2"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group text-sm font-bold uppercase tracking-widest hover:text-[#ffde59] transition-colors flex items-center gap-2"
                     >
-                        All Repositories <span>↗</span>
+                        All Repositories
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={2.5}
+                            stroke="currentColor"
+                            className="w-4 h-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                        >
+                            <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
+                        </svg>
                     </a>
                 </footer>
             </div>

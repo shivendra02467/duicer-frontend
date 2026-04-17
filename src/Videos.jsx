@@ -84,7 +84,14 @@ function Videos() {
                                             <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-zinc-500">
                                                 {new Date(snippet.publishedAt).getFullYear()} // Archive
                                             </span>
-                                            <span className="text-[#ffde59] text-xl font-bold">▶</span>
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 24 24"
+                                                fill="currentColor"
+                                                className="w-6 h-6 text-[#ffde59]"
+                                            >
+                                                <path d="M8 5v14l11-7z" />
+                                            </svg>
                                         </div>
                                     </div>
                                 </div>
@@ -99,9 +106,21 @@ function Videos() {
                     </p>
                     <a
                         href="https://www.youtube.com/@duicer"
-                        className="text-sm font-bold uppercase tracking-widest hover:text-[#ffde59] transition-colors flex items-center gap-2"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group text-sm font-bold uppercase tracking-widest hover:text-[#ffde59] transition-colors flex items-center gap-2"
                     >
-                        Go to Channel <span>↗</span>
+                        Go to Channel
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={2.5}
+                            stroke="currentColor"
+                            className="w-4 h-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                        >
+                            <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
+                        </svg>
                     </a>
                 </footer>
             </div>
